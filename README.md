@@ -1,34 +1,61 @@
-# Noktra
+# Noktra: Secure Embedded Telemetry Shell
 
-**Noktra** is an experimental embedded robotics framework with a custom compiler and virtual machine for writing programmable, script-driven behavior for physical robots. Designed for real-world learning, it emphasizes secure communication, modular hardware integration, and low-level firmware development.
+**Noktra** is an embedded telemetry shell designed for microcontrollers deployed in constrained or remote environments. Its goal is to provide secure, low-level diagnostics and control over UART, with built-in support for encrypted communication, integrity checks, and safe over-the-air (OTA) updates.
 
-## Features
+> _This project is currently in active design. Firmware development will begin once hardware is received._
 
-- Modular firmware with support for UART, SPI, I2C, and GPIO
-- Wired and wireless telemetry system with encryption support
-- Sensor and motor integration for real-time control and feedback
-- A custom stack-based VM for executing bytecode programs
-- A Rust-based compiler for the Noktra DSL
+---
 
-## Getting Started
+## Project Goals
 
-To get started, see the [Getting Started Guide (TODO)](docs/getting_started.md).
+- **Secure Diagnostics**: Provide a command-line-style interface over UART with authenticated, encrypted communication.
+- **Reliability**: Ensure data integrity using checksums (CRC) and fault-tolerant update mechanisms.
+- **Maintainability**: Support remote OTA firmware updates with dual-bank flashing and rollback protection.
+- **Minimal Footprint**: Keep the shell lightweight and efficient for memory- and compute-constrained devices.
+- **Extensibility**: Design a modular packet protocol and command interface to allow future expansions or application-specific commands.
 
-If you want to dive into the architecture and design, see the [Design Document](docs/design_doc.md).
+---
 
-## Repository Structure
+## Planned Features
 
-```
-/firmware/ - C code for embedded drivers and runtime
-/compiler/ - Rust-based compiler for the Noktra DSL
-/cli/ - Rust CLI for uploading code, reading telemetry
-/docs/ - Design documents, usage guides, architecture notes
-```
+- UART-based CLI with structured command set
+- AES-encrypted payloads (AES-128/256, depending on footprint analysis)
+- CRC32 for message integrity
+- Handshake/authentication protocol on session start
+- Dual-bank OTA update support with boot flag and rollback logic
+- Configurable command whitelist and privilege levels
+- Minimal logging via serial debug output
 
-## Roadmap
+---
 
-See the [project roadmap (TODO)](docs/design_doc.md#roadmap) for planned features and milestones.
+## Target Platform
 
-## License
+- STM32F4 series (ARM Cortex-M4)
+- Toolchain: `arm-none-eabi-gcc`
+- Build system: `Make`
+- Host interface: UART (with optional USB-CDC fallback)
 
-MIT License
+---
+
+## Tech Stack
+
+- **Language**: C
+- **Platform**: STM32F4
+- **Build**: Make + arm-none-eabi toolchain
+
+---
+
+## Use Cases
+
+- Field diagnostics and configuration for embedded devices
+- Secure remote control in sensor networks or IoT gateways
+- Firmware update management in physically inaccessible deployments
+- Educational exploration of secure low-level systems
+
+---
+
+## Author
+
+**Travis Bubb**  
+[github.com/TravisBubb](https://github.com/TravisBubb)  
+[linkedin.com/in/travisbubb](https://linkedin.com/in/travisbubb)
