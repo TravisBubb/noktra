@@ -1,0 +1,102 @@
+[
+  {
+    "arguments": [
+      "/home/tbubb/dev/noktra/.devbox/nix/profile/default/bin/arm-none-eabi-gcc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-mcpu=cortex-m4",
+      "-mthumb",
+      "-std=c11",
+      "-Os",
+      "-ffunction-sections",
+      "-fdata-sections",
+      "-Iinc",
+      "-Ithird_party/STM32CubeF4/Drivers/CMSIS/Core/Include",
+      "-Ithird_party/STM32CubeF4/Drivers/CMSIS/Device/ST/STM32F4xx/Include",
+      "-DSTM32F446xx",
+      "-c",
+      "-o",
+      "build/src/main.o",
+      "src/main.c"
+    ],
+    "directory": "/home/tbubb/dev/noktra",
+    "file": "/home/tbubb/dev/noktra/src/main.c",
+    "output": "/home/tbubb/dev/noktra/build/src/main.o"
+  },
+  {
+    "arguments": [
+      "/home/tbubb/dev/noktra/.devbox/nix/profile/default/bin/arm-none-eabi-gcc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-mcpu=cortex-m4",
+      "-mthumb",
+      "-std=c11",
+      "-Os",
+      "-ffunction-sections",
+      "-fdata-sections",
+      "-Iinc",
+      "-Ithird_party/STM32CubeF4/Drivers/CMSIS/Core/Include",
+      "-Ithird_party/STM32CubeF4/Drivers/CMSIS/Device/ST/STM32F4xx/Include",
+      "-DSTM32F446xx",
+      "-c",
+      "-o",
+      "build/src/crt_stubs.o",
+      "src/crt_stubs.c"
+    ],
+    "directory": "/home/tbubb/dev/noktra",
+    "file": "/home/tbubb/dev/noktra/src/crt_stubs.c",
+    "output": "/home/tbubb/dev/noktra/build/src/crt_stubs.o"
+  },
+  {
+    "arguments": [
+      "/home/tbubb/dev/noktra/.devbox/nix/profile/default/bin/arm-none-eabi-gcc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-mcpu=cortex-m4",
+      "-mthumb",
+      "-std=c11",
+      "-Os",
+      "-ffunction-sections",
+      "-fdata-sections",
+      "-Iinc",
+      "-Ithird_party/STM32CubeF4/Drivers/CMSIS/Core/Include",
+      "-Ithird_party/STM32CubeF4/Drivers/CMSIS/Device/ST/STM32F4xx/Include",
+      "-DSTM32F446xx",
+      "-c",
+      "-o",
+      "build/startup/system_stm32f4xx.o",
+      "startup/system_stm32f4xx.c"
+    ],
+    "directory": "/home/tbubb/dev/noktra",
+    "file": "/home/tbubb/dev/noktra/startup/system_stm32f4xx.c",
+    "output": "/home/tbubb/dev/noktra/build/startup/system_stm32f4xx.o"
+  },
+  {
+    "arguments": [
+      "/home/tbubb/dev/noktra/.devbox/nix/profile/default/bin/arm-none-eabi-gcc",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-mcpu=cortex-m4",
+      "-mthumb",
+      "-std=c11",
+      "-Os",
+      "-ffunction-sections",
+      "-fdata-sections",
+      "-Iinc",
+      "-Ithird_party/STM32CubeF4/Drivers/CMSIS/Core/Include",
+      "-Ithird_party/STM32CubeF4/Drivers/CMSIS/Device/ST/STM32F4xx/Include",
+      "-DSTM32F446xx",
+      "-c",
+      "-o",
+      "build/startup/startup_stm32f446xx.o",
+      "startup/startup_stm32f446xx.s"
+    ],
+    "directory": "/home/tbubb/dev/noktra",
+    "file": "/home/tbubb/dev/noktra/startup/startup_stm32f446xx.s",
+    "output": "/home/tbubb/dev/noktra/build/startup/startup_stm32f446xx.o"
+  }
+]
