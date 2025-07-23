@@ -33,13 +33,17 @@ ASM_SOURCES := $(shell find $(SRCDIRS) -name '*.s')
 OBJECTS := $(addprefix $(BUILD_DIR)/, $(C_SOURCES:.c=.o) $(ASM_SOURCES:.s=.o))
 
 # === Targets ===
-.PHONY: all clean flash
+.PHONY: all clean flash debug
 
 all: $(BUILD_DIR)/$(TARGET).elf
 
 # Flash
 flash: $(BUILD_DIR)/$(TARGET).bin
 	$(OPENOCD) -f $(OPENOCD_INTERFACE) -f $(OPENOCD_TARGET) -c "program $(BUILD_DIR)/$(TARGET).bin $(FLASH_ADDRESS) verify reset exit"
+
+# Debug
+debug: $(BUILD_DIR)/$(TARGET).bin
+	$(OPENOCD) -f $(OPENOCD_INTERFACE) -f $(OPENOCD_TARGET)
 
 $(BUILD_DIR)/$(TARGET).bin: $(BUILD_DIR)/$(TARGET).elf
 	$(OBJCOPY) -O binary $< $@
