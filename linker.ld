@@ -16,38 +16,68 @@ MEMORY
 
 SECTIONS
 {
-    .isr_vector :
+    /* The vector table goes at the start of flash. */
+    .vector_table :
     {
-        KEEP(*(.isr_vector))    /* vector table */
+        . = ALIGN(4);
+        KEEP(*(.vector_table))    /* vector table */
+        . = ALIGN(4);
     } > FLASH
 
+    /* The 'text' section contains the main program code. */
     .text :
     {
+        . = ALIGN(4);
         *(.text)
         *(.text*)
+        . = ALIGN(4);
     } > FLASH
 
+    /* The 'rodata' section contains read-only data,
+     * constants, strings, information that won't change. */
     .rodata :
     {
+        . = ALIGN(4);
         *(.rodata)
         *(.rodata*)
+        . = ALIGN(4);
     } > FLASH
 
-    .data : AT (_etext)
+    /* The 'data' section is space set aside in RAM for
+     * things like variables, which can change. */
+    _sidata = .;
+    .data : AT (_sidata)
     {
-        _sdata = .;
+        . = ALIGN(4);
+        _sdata = .;     /* Mark start of data section */
         *(.data)
         *(.data*)
-        _edata = .;
+        _edata = .;     /* Mark end of data section */
+        . = ALIGN(4);
     } > RAM
 
+    /* The 'bss' section is similar to the 'data' section,
+     * but its space is initialized to all 0s at the
+     * start of the program. */
     .bss :
     {
-        _sbss = .;
+        . = ALIGN(4);
+        _sbss = .;      /* Mark start of BSS section */
         *(.bss)
         *(.bss*)
         *(COMMON)
-        _ebss = .;
+        . = ALIGN(4);
+        _ebss = .;      /* Mark end of BSS section */
+    } > RAM
+
+    /* Space set aside for the application's heap/stack. */
+    .dyanmic_allocations :
+    {
+        . = ALIGN(4);
+        _ssystem_ram = .;   /* Mark start of system ram section */
+        . = . + _Min_Stack_Size;
+        . = ALIGN(4);
+        _esystem_ram = .;   /* Mark end of system ram section */
     } > RAM
 
     _etext = LOADADDR(.data);
